@@ -25,3 +25,19 @@ function operate(a,b,operator){
       break;
   }
 }
+
+const display = document.querySelector('.display')
+
+const buttons = document.querySelectorAll('button')
+let firstNum = '';
+let secondNum = '';
+
+buttons.forEach((button)=>{
+  button.addEventListener('click',()=>{
+    display.textContent+=button.textContent;
+    firstNum=display.textContent.split('+')[0];
+    secondNum = display.textContent.split('+')[1];
+    console.log(`fir ${firstNum}`);
+    console.log(`sec ${secondNum}`);
+  })
+})
