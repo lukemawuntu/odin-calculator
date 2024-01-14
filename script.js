@@ -12,15 +12,22 @@ function divide(a,b){
 }
 
 function operate(a,b,operator){
+  let numA = +a;
+  let numB = +b;
+  let result;
   switch (operator) {
     case "+":
-      console.log(add(a,b))
+      result = add(numA,numB)
+      return display.textContent=result;
     case "-":
-      return subtract(a,b)
+      result = subtract(numA,numB)
+      return display.textContent=result;
     case "*":
-      return multiply(a,b)
+      result = multiply(numA,numB)
+      return display.textContent=result;
     case "/":
-      return divide(a,b)
+      result = divide(numA,numB)
+      return display.textContent=result;
     default:
       break;
   }
@@ -31,15 +38,13 @@ const display = document.querySelector('.display')
 const buttons = document.querySelectorAll('button')
 let firstNum = '';
 let tempNum = '';
-
+let operator = '';
 buttons.forEach(button => {
   button.addEventListener('click',()=>{
-    // if(button.id>=1 && button.id<=9){display.textContent+=(button.id)}
     switch (button.textContent) {
       case '=':
         display.textContent='';
-        console.log(firstNum);
-        console.log(temp);
+        operate(firstNum,temp,operator)
         break;
       case '1':
       case '2':
@@ -58,7 +63,9 @@ buttons.forEach(button => {
       case '/':
         display.textContent='';
         firstNum = temp
-        console.log(temp)
+        if(button.textContent=='+'||button.textContent=='-'||button.textContent=='*'||button.textContent=='/'){
+          operator=button.textContent;
+        }
       default:
         break;
     }
