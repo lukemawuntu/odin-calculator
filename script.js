@@ -14,7 +14,6 @@ function divide(a,b){
 function operate(a,b,operator){
   let numA = +a;
   let numB = +b;
-  let result;
   switch (operator) {
     case "+":
       result = add(numA,numB)
@@ -39,12 +38,14 @@ const buttons = document.querySelectorAll('button')
 let firstNum = '';
 let tempNum = '';
 let operator = '';
+let clickedEqual = false;
 buttons.forEach(button => {
   button.addEventListener('click',()=>{
     switch (button.textContent) {
       case '=':
         display.textContent='';
-        operate(firstNum,temp,operator)
+        operate(firstNum,tempNum,operator)
+        clickedEqual=true;
         break;
       case '1':
       case '2':
@@ -55,17 +56,19 @@ buttons.forEach(button => {
       case '7':
       case '8':
       case '9':
-        temp = display.textContent+=(button.id);
+        tempNum = display.textContent+=(button.id); //12
         break;
       case '+':
       case '-':
       case '*':
       case '/':
-        display.textContent='';
-        firstNum = temp
-        if(button.textContent=='+'||button.textContent=='-'||button.textContent=='*'||button.textContent=='/'){
-          operator=button.textContent;
+        display.textContent=''; // empty display
+        if (clickedEqual) {
+          firstNum=result;
+        } else{
+          firstNum=tempNum;
         }
+        operator=button.textContent; 
       default:
         break;
     }
