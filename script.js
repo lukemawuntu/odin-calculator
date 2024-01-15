@@ -43,9 +43,13 @@ buttons.forEach(button => {
   button.addEventListener('click',()=>{
     switch (button.textContent) {
       case '=':
-        display.textContent='';
+        if (firstNum){
+          display.textContent='empty';
+        }
         operate(firstNum,tempNum,operator)
-        clickedEqual=true;
+        if (operator&&firstNum) {
+          clickedEqual=true;
+        } 
         break;
       case '1':
       case '2':
@@ -67,9 +71,10 @@ buttons.forEach(button => {
           firstNum=result;
         } else{
           firstNum=tempNum;
+          tempNum='';
         }
-        if(!tempNum){
-          operator=''; 
+        if (!firstNum){
+          operator='';
         }else{
           operator=button.textContent; 
         }
