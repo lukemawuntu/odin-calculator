@@ -68,7 +68,12 @@ buttons.forEach(button => {
         } else{
           firstNum=tempNum;
         }
-        operator=button.textContent; 
+        if(!tempNum){
+          operator=''; 
+        }else{
+          operator=button.textContent; 
+        }
+        break;
       default:
         break;
     }
